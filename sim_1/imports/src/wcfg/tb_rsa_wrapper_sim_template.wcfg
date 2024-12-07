@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_rsa_wrapper_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="axi_bram_ctrl_funcs" />
+            <top_module name="glbl" />
+            <top_module name="tb_rsa_wrapper" />
+            <top_module name="vcomponents" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="546,963.000 ns"></ZoomStartTime>
+      <ZoomEndTime time="547,066.201 ns"></ZoomEndTime>
+      <Cursor1Time time="547,005.000 ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="476"></NameColumnWidth>
+      <ValueColumnWidth column_width="466"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="15" />
+   <wvobject fp_name="/tb_rsa_wrapper/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_rsa_wrapper/resetn" type="logic">
+      <obj_property name="ElementShortName">resetn</obj_property>
+      <obj_property name="ObjectShortName">resetn</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_rsa_wrapper/leds" type="logic">
+      <obj_property name="ElementShortName">leds</obj_property>
+      <obj_property name="ObjectShortName">leds</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_rsa_wrapper/mem_addr" type="array">
+      <obj_property name="ElementShortName">mem_addr[16:0]</obj_property>
+      <obj_property name="ObjectShortName">mem_addr[16:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_rsa_wrapper/mem_dout" type="array">
+      <obj_property name="ElementShortName">mem_dout[1023:0]</obj_property>
+      <obj_property name="ObjectShortName">mem_dout[1023:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="group32" type="group">
+      <obj_property name="label">Axil_Wires</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/tb_rsa_wrapper/mem_addr" type="array">
+         <obj_property name="ElementShortName">mem_addr[16:0]</obj_property>
+         <obj_property name="ObjectShortName">mem_addr[16:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_rsa_wrapper/mem_din" type="array">
+         <obj_property name="ElementShortName">mem_din[1023:0]</obj_property>
+         <obj_property name="ObjectShortName">mem_din[1023:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_rsa_wrapper/mem_dout" type="array">
+         <obj_property name="ElementShortName">mem_dout[1023:0]</obj_property>
+         <obj_property name="ObjectShortName">mem_dout[1023:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_rsa_wrapper/mem_we" type="array">
+         <obj_property name="ElementShortName">mem_we[127:0]</obj_property>
+         <obj_property name="ObjectShortName">mem_we[127:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_rsa_wrapper/axil_araddr" type="array">
+         <obj_property name="ElementShortName">axil_araddr[11:0]</obj_property>
+         <obj_property name="ObjectShortName">axil_araddr[11:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_rsa_wrapper/axil_arready" type="logic">
+         <obj_property name="ElementShortName">axil_arready</obj_property>
+         <obj_property name="ObjectShortName">axil_arready</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_rsa_wrapper/axil_arvalid" type="logic">
+         <obj_property name="ElementShortName">axil_arvalid</obj_property>
+         <obj_property name="ObjectShortName">axil_arvalid</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_rsa_wrapper/axil_awaddr" type="array">
+         <obj_property name="ElementShortName">axil_awaddr[11:0]</obj_property>
+         <obj_property name="ObjectShortName">axil_awaddr[11:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_rsa_wrapper/axil_awready" type="logic">
+         <obj_property name="ElementShortName">axil_awready</obj_property>
+         <obj_property name="ObjectShortName">axil_awready</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_rsa_wrapper/axil_awvalid" type="logic">
+         <obj_property name="ElementShortName">axil_awvalid</obj_property>
+         <obj_property name="ObjectShortName">axil_awvalid</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_rsa_wrapper/axil_bready" type="logic">
+         <obj_property name="ElementShortName">axil_bready</obj_property>
+         <obj_property name="ObjectShortName">axil_bready</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_rsa_wrapper/axil_bresp" type="array">
+         <obj_property name="ElementShortName">axil_bresp[1:0]</obj_property>
+         <obj_property name="ObjectShortName">axil_bresp[1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_rsa_wrapper/axil_bvalid" type="logic">
+         <obj_property name="ElementShortName">axil_bvalid</obj_property>
+         <obj_property name="ObjectShortName">axil_bvalid</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_rsa_wrapper/axil_rdata" type="array">
+         <obj_property name="ElementShortName">axil_rdata[31:0]</obj_property>
+         <obj_property name="ObjectShortName">axil_rdata[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_rsa_wrapper/axil_rready" type="logic">
+         <obj_property name="ElementShortName">axil_rready</obj_property>
+         <obj_property name="ObjectShortName">axil_rready</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_rsa_wrapper/axil_rresp" type="array">
+         <obj_property name="ElementShortName">axil_rresp[1:0]</obj_property>
+         <obj_property name="ObjectShortName">axil_rresp[1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_rsa_wrapper/axil_rvalid" type="logic">
+         <obj_property name="ElementShortName">axil_rvalid</obj_property>
+         <obj_property name="ObjectShortName">axil_rvalid</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_rsa_wrapper/axil_wdata" type="array">
+         <obj_property name="ElementShortName">axil_wdata[31:0]</obj_property>
+         <obj_property name="ObjectShortName">axil_wdata[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_rsa_wrapper/axil_wready" type="logic">
+         <obj_property name="ElementShortName">axil_wready</obj_property>
+         <obj_property name="ObjectShortName">axil_wready</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_rsa_wrapper/axil_wstrb" type="array">
+         <obj_property name="ElementShortName">axil_wstrb[3:0]</obj_property>
+         <obj_property name="ObjectShortName">axil_wstrb[3:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_rsa_wrapper/axil_wvalid" type="logic">
+         <obj_property name="ElementShortName">axil_wvalid</obj_property>
+         <obj_property name="ObjectShortName">axil_wvalid</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/tb_rsa_wrapper/COMMAND" type="array">
+      <obj_property name="ElementShortName">COMMAND[31:0]</obj_property>
+      <obj_property name="ObjectShortName">COMMAND[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_rsa_wrapper/TXADDR" type="array">
+      <obj_property name="ElementShortName">TXADDR[31:0]</obj_property>
+      <obj_property name="ObjectShortName">TXADDR[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_rsa_wrapper/STATUS" type="array">
+      <obj_property name="ElementShortName">STATUS[31:0]</obj_property>
+      <obj_property name="ObjectShortName">STATUS[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_rsa_wrapper/MEM0_ADDR" type="array">
+      <obj_property name="ElementShortName">MEM0_ADDR[15:0]</obj_property>
+      <obj_property name="ObjectShortName">MEM0_ADDR[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_rsa_wrapper/MEM1_ADDR" type="array">
+      <obj_property name="ElementShortName">MEM1_ADDR[15:0]</obj_property>
+      <obj_property name="ObjectShortName">MEM1_ADDR[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_rsa_wrapper/reg_status" type="array">
+      <obj_property name="ElementShortName">reg_status[31:0]</obj_property>
+      <obj_property name="ObjectShortName">reg_status[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="group49" type="group">
+      <obj_property name="label">Input Registers</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/tb_rsa_wrapper/dut/tb_rsa_project_i/rsa_0/inst/rin0" type="array">
+         <obj_property name="ElementShortName">rin0[31:0]</obj_property>
+         <obj_property name="ObjectShortName">rin0[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_rsa_wrapper/dut/tb_rsa_project_i/rsa_0/inst/rin1" type="array">
+         <obj_property name="ElementShortName">rin1[31:0]</obj_property>
+         <obj_property name="ObjectShortName">rin1[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_rsa_wrapper/dut/tb_rsa_project_i/rsa_0/inst/rin2" type="array">
+         <obj_property name="ElementShortName">rin2[31:0]</obj_property>
+         <obj_property name="ObjectShortName">rin2[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_rsa_wrapper/dut/tb_rsa_project_i/rsa_0/inst/rin3" type="array">
+         <obj_property name="ElementShortName">rin3[31:0]</obj_property>
+         <obj_property name="ObjectShortName">rin3[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_rsa_wrapper/dut/tb_rsa_project_i/rsa_0/inst/rin4" type="array">
+         <obj_property name="ElementShortName">rin4[31:0]</obj_property>
+         <obj_property name="ObjectShortName">rin4[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_rsa_wrapper/dut/tb_rsa_project_i/rsa_0/inst/rin5" type="array">
+         <obj_property name="ElementShortName">rin5[31:0]</obj_property>
+         <obj_property name="ObjectShortName">rin5[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_rsa_wrapper/dut/tb_rsa_project_i/rsa_0/inst/rin6" type="array">
+         <obj_property name="ElementShortName">rin6[31:0]</obj_property>
+         <obj_property name="ObjectShortName">rin6[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_rsa_wrapper/dut/tb_rsa_project_i/rsa_0/inst/rin7" type="array">
+         <obj_property name="ElementShortName">rin7[31:0]</obj_property>
+         <obj_property name="ObjectShortName">rin7[31:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group50" type="group">
+      <obj_property name="label">Output Registers</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/tb_rsa_wrapper/dut/tb_rsa_project_i/rsa_0/inst/rout0" type="array">
+         <obj_property name="ElementShortName">rout0[31:0]</obj_property>
+         <obj_property name="ObjectShortName">rout0[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_rsa_wrapper/dut/tb_rsa_project_i/rsa_0/inst/rout1" type="array">
+         <obj_property name="ElementShortName">rout1[31:0]</obj_property>
+         <obj_property name="ObjectShortName">rout1[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_rsa_wrapper/dut/tb_rsa_project_i/rsa_0/inst/rout2" type="array">
+         <obj_property name="ElementShortName">rout2[31:0]</obj_property>
+         <obj_property name="ObjectShortName">rout2[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_rsa_wrapper/dut/tb_rsa_project_i/rsa_0/inst/rout3" type="array">
+         <obj_property name="ElementShortName">rout3[31:0]</obj_property>
+         <obj_property name="ObjectShortName">rout3[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_rsa_wrapper/dut/tb_rsa_project_i/rsa_0/inst/rout4" type="array">
+         <obj_property name="ElementShortName">rout4[31:0]</obj_property>
+         <obj_property name="ObjectShortName">rout4[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_rsa_wrapper/dut/tb_rsa_project_i/rsa_0/inst/rout5" type="array">
+         <obj_property name="ElementShortName">rout5[31:0]</obj_property>
+         <obj_property name="ObjectShortName">rout5[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_rsa_wrapper/dut/tb_rsa_project_i/rsa_0/inst/rout6" type="array">
+         <obj_property name="ElementShortName">rout6[31:0]</obj_property>
+         <obj_property name="ObjectShortName">rout6[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_rsa_wrapper/dut/tb_rsa_project_i/rsa_0/inst/rout7" type="array">
+         <obj_property name="ElementShortName">rout7[31:0]</obj_property>
+         <obj_property name="ObjectShortName">rout7[31:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group1126" type="group">
+      <obj_property name="label">Memory</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/tb_rsa_wrapper/dut/tb_rsa_project_i/tb_mem_0/inst/mem[0]" type="array">
+         <obj_property name="ElementShortName">[0][1023:0]</obj_property>
+         <obj_property name="ObjectShortName">[0][1023:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_rsa_wrapper/dut/tb_rsa_project_i/tb_mem_0/inst/mem[128]" type="array">
+         <obj_property name="ElementShortName">[128][1023:0]</obj_property>
+         <obj_property name="ObjectShortName">[128][1023:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_rsa_wrapper/dut/tb_rsa_project_i/tb_mem_0/inst/mem[256]" type="array">
+         <obj_property name="ElementShortName">[256][1023:0]</obj_property>
+         <obj_property name="ObjectShortName">[256][1023:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_rsa_wrapper/dut/tb_rsa_project_i/tb_mem_0/inst/mem[384]" type="array">
+         <obj_property name="ElementShortName">[384][1023:0]</obj_property>
+         <obj_property name="ObjectShortName">[384][1023:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_rsa_wrapper/dut/tb_rsa_project_i/tb_mem_0/inst/mem[512]" type="array">
+         <obj_property name="ElementShortName">[512][1023:0]</obj_property>
+         <obj_property name="ObjectShortName">[512][1023:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_rsa_wrapper/dut/tb_rsa_project_i/tb_mem_0/inst/mem[640]" type="array">
+         <obj_property name="ElementShortName">[640][1023:0]</obj_property>
+         <obj_property name="ObjectShortName">[640][1023:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_rsa_wrapper/dut/tb_rsa_project_i/tb_mem_0/inst/mem[768]" type="array">
+         <obj_property name="ElementShortName">[768][1023:0]</obj_property>
+         <obj_property name="ObjectShortName">[768][1023:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_rsa_wrapper/dut/tb_rsa_project_i/tb_mem_0/inst/mem[896]" type="array">
+         <obj_property name="ElementShortName">[896][1023:0]</obj_property>
+         <obj_property name="ObjectShortName">[896][1023:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_rsa_wrapper/dut/tb_rsa_project_i/tb_mem_0/inst/mem[1024]" type="array">
+         <obj_property name="ElementShortName">[1024][1023:0]</obj_property>
+         <obj_property name="ObjectShortName">[1024][1023:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_rsa_wrapper/dut/tb_rsa_project_i/tb_mem_0/inst/mem[1152]" type="array">
+         <obj_property name="ElementShortName">[1152][1023:0]</obj_property>
+         <obj_property name="ObjectShortName">[1152][1023:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_rsa_wrapper/dut/tb_rsa_project_i/tb_mem_0/inst/mem[1280]" type="array">
+         <obj_property name="ElementShortName">[1280][1023:0]</obj_property>
+         <obj_property name="ObjectShortName">[1280][1023:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_rsa_wrapper/dut/tb_rsa_project_i/tb_mem_0/inst/mem[1408]" type="array">
+         <obj_property name="ElementShortName">[1408][1023:0]</obj_property>
+         <obj_property name="ObjectShortName">[1408][1023:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_rsa_wrapper/dut/tb_rsa_project_i/tb_mem_0/inst/mem[1536]" type="array">
+         <obj_property name="ElementShortName">[1536][1023:0]</obj_property>
+         <obj_property name="ObjectShortName">[1536][1023:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_rsa_wrapper/dut/tb_rsa_project_i/tb_mem_0/inst/mem[1664]" type="array">
+         <obj_property name="ElementShortName">[1664][1023:0]</obj_property>
+         <obj_property name="ObjectShortName">[1664][1023:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_rsa_wrapper/dut/tb_rsa_project_i/tb_mem_0/inst/mem[1792]" type="array">
+         <obj_property name="ElementShortName">[1792][1023:0]</obj_property>
+         <obj_property name="ObjectShortName">[1792][1023:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_rsa_wrapper/dut/tb_rsa_project_i/tb_mem_0/inst/mem[1920]" type="array">
+         <obj_property name="ElementShortName">[1920][1023:0]</obj_property>
+         <obj_property name="ObjectShortName">[1920][1023:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_rsa_wrapper/dut/tb_rsa_project_i/tb_mem_0/inst/mem[2048]" type="array">
+         <obj_property name="ElementShortName">[2048][1023:0]</obj_property>
+         <obj_property name="ObjectShortName">[2048][1023:0]</obj_property>
+      </wvobject>
+   </wvobject>
+</wave_config>
