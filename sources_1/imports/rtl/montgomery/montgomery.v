@@ -100,61 +100,19 @@ always @(*) begin
         end
         INITIALIZE: next_state = INIT_MULT_B0;
         INIT_MULT_B0: next_state = WAIT_MULT_B0;
-        WAIT_MULT_B0: begin
-            if(adder_done)
-                next_state = WAIT_MULT_B1;
-            else 
-                next_state = WAIT_MULT_B0;
-        end
-        WAIT_MULT_B1: begin
-            if(adder_done)
-                next_state = INIT_MULT_M0;
-            else 
-                next_state = WAIT_MULT_B1;
-        end
+        WAIT_MULT_B0: next_state = INIT_MULT_M0;
         INIT_MULT_M0: next_state = WAIT_MULT_M0;
-        WAIT_MULT_M0: begin
-            if(adder_done)
-                    next_state = WAIT_MULT_M1;
-            else 
-                next_state = WAIT_MULT_M0;
-        end
-        WAIT_MULT_M1:begin
-            if(adder_done)
-                next_state = ACCUMULATE;
-            else
-                next_state = WAIT_MULT_M1;
-        end
-        ACCUMULATE: begin
-            // adder_start = 0;
-            if (A_index_bits != 0)
-                next_state = WAIT_MULTIPLIER;
-            else
-                next_state = CONDITIONAL_UPDATE;
-        end
-        WAIT_MULTIPLIER: begin
-            if(adder_done)
-                next_state = CONDITIONAL_UPDATE;
-            else
-                next_state = WAIT_MULTIPLIER;
-        end 
-        CONDITIONAL_UPDATE: begin     
-            // adder_start = 0;     
-            if ((C[1:0] == 2'b01 && in_m[1:0] == 2'b01) || (C[1:0] == 2'b11 && in_m[1:0] == 2'b11)
-             || (C[1:0] == 2'b10 && in_m[1:0] == 2'b01) || (C[1:0] == 2'b10 && in_m[1:0] == 2'b11)
-             || (C[1:0] == 2'b11 && in_m[1:0] == 2'b01) || (C[1:0] == 2'b01 && in_m[1:0] == 2'b11))
-                next_state = WAIT_CONST_MULTIPLIER;
-            else
-                next_state = DIVIDE_BY_4;
+        WAIT_MULT_M0: next_state = WAIT_MULT_M1;
+        WAIT_MULT_M1: next_state = ACCUMULATE;
+        ACCUMULATE:   next_state = WAIT_MULTIPLIER;
+        WAIT_MULTIPLIER: next_state = CONDITIONAL_UPDATE;
+        CONDITIONAL_UPDATE: begin       
+            next_state = WAIT_CONST_MULTIPLIER;
         end
         WAIT_CONST_MULTIPLIER: begin 
-            if(adder_done)
-                next_state = DIVIDE_BY_4;
-            else
-                next_state = WAIT_CONST_MULTIPLIER;
+            next_state = DIVIDE_BY_4;
         end
         DIVIDE_BY_4: begin
-            // adder_start = 0;
             if(i < n-3)
                 next_state = ACCUMULATE;
             else                
@@ -164,21 +122,14 @@ always @(*) begin
             next_state = NORMALIZE;
         end
         NORMALIZE: begin
-            if (adder_done) begin 
-                if (adder_result[1027] == 0)
-                    next_state = WAIT_ADDER;
-                else                     
-                    next_state = DONE;
-            end 
-            else
-                next_state = NORMALIZE;
-            
+            if (adder_result[1027] == 0)
+                next_state = WAIT_ADDER;
+            else                     
+                next_state = DONE;
+
         end
         WAIT_ADDER: begin 
-            if(adder_done)
-                next_state = COMPARE;
-            else
-                next_state = WAIT_ADDER;
+            next_state = COMPARE;
         end
         DONE: next_state = IDLE;
         default: next_state = IDLE;
@@ -196,7 +147,6 @@ always @(posedge clk) begin
         adder_in_a <= 0;
         adder_in_b <= 0;
         subtract <= 0;
-        adder_start <= 0;
         twoB <= 0;
         threeB <= 0;
         twoM <= 0;
@@ -212,7 +162,6 @@ always @(posedge clk) begin
                 adder_in_a <= 0;
                 adder_in_b <= 0;
                 subtract <= 0;
-                adder_start <= 0;
                 twoB <= 0;
                 threeB <= 0;
                 twoM <= 0;
@@ -222,118 +171,80 @@ always @(posedge clk) begin
                 A <= in_a;                
             end
             INIT_MULT_B0: begin 
-                adder_start <= 1;
                 subtract <= 0;
                 adder_in_a <= in_b;
                 adder_in_b <= in_b;
             end
             WAIT_MULT_B0: begin
-                adder_start <= 0;
-                if (adder_done) begin 
-                    twoB <= adder_result;
-                    adder_in_a <= adder_result;
-                    adder_in_b <= in_b;
-                    subtract <= 0;
-                    adder_start <= 1;
-                end
-            end
-            WAIT_MULT_B1: begin
-                adder_start <= 0;
-                if (adder_done)
-                    threeB <= adder_result;
+                twoB <= adder_result;
+                adder_in_a <= adder_result;
+                adder_in_b <= in_b;
+                subtract <= 0;
             end
             INIT_MULT_M0: begin 
-                adder_start <= 1;
+                threeB <= adder_result;
                 subtract <= 0;
                 adder_in_a <= in_m;
                 adder_in_b <= in_m;
             end
             WAIT_MULT_M0: begin
-                adder_start <= 0;
-                if (adder_done) begin 
-                    twoM <= adder_result;
-                    adder_in_a <= adder_result;
-                    adder_in_b <= in_m;
-                    subtract <= 0;
-                    adder_start <= 1;
-                end
-            end
-            WAIT_MULT_M1:begin
+                twoM <= adder_result;
+                adder_in_a <= adder_result;
+                adder_in_b <= in_m;
+                subtract <= 0;
+                
                 A_index_bits <= A[1:0];
-                adder_start <= 0;
-                if (adder_done)
-                    threeM <= adder_result;
             end
-            ACCUMULATE: begin
+            WAIT_MULT_M1: threeM <= adder_result;
+            ACCUMULATE: begin               
                 subtract <= 0;
                 adder_in_a <= C;
                 A <= A >> 2;
                 if (A_index_bits == 0) adder_in_b <= 0;
                 else begin 
-                    adder_start <= 1;
                     if (A_index_bits == 1) adder_in_b <= in_b;
                     else if (A_index_bits == 2) adder_in_b <= twoB;
                     else if (A_index_bits == 3) adder_in_b <= threeB;
-                end
-                    
+                end   
             end
-            WAIT_MULTIPLIER: begin
-                adder_start <= 0;
-                if (adder_done)
-                    C <= adder_result;
-            end 
+            WAIT_MULTIPLIER:  C <= adder_result;
             CONDITIONAL_UPDATE: begin
                 subtract <= 0;
                 adder_in_a <= C[1026:0];
                 if ((C[1:0] == 2'b01 && in_m[1:0] == 2'b01) || (C[1:0] == 2'b11 && in_m[1:0] == 2'b11)) begin
                     adder_in_b <= threeM;
-                    adder_start <= 1;
                 end
                 else if ((C[1:0] == 2'b10 && in_m[1:0] == 2'b01) || (C[1:0] == 2'b10 && in_m[1:0] == 2'b11)) begin
                         adder_in_b <= twoM;
-                        adder_start <= 1;
                     end
                     else if ((C[1:0] == 2'b11 && in_m[1:0] == 2'b01) || (C[1:0] == 2'b01 && in_m[1:0] == 2'b11)) begin
                             adder_in_b <= in_m;
-                            adder_start <= 1;
                         end
                          else 
                              adder_in_b <= 0; 
             end
             WAIT_CONST_MULTIPLIER: begin 
-                adder_start <= 0;
-                     if (adder_done)
-                         C <= adder_result;
+                C <= adder_result;
             end
             DIVIDE_BY_4: begin
                 C <= C >> 2;    
                 i <= i + 2;
                 A_index_bits <= A[1:0];
             end
-            CHECK_LOOP: begin 
-//                i <= i + 2;
-            end
             COMPARE: begin 
-                adder_start <= 1;
                 subtract <= 1;
                 adder_in_a <= C;
                 adder_in_b <= in_m;
             end
             NORMALIZE: begin
-                adder_start <= 0;
-                if (adder_done) begin 
-                    if (adder_result[1027] == 0) begin 
-                        adder_start <= 1;
-                        subtract <= 1;
-                        adder_in_a <= C;
-                        adder_in_b <= in_m;
-                    end
+                if (adder_result[1027] == 0) begin 
+                    subtract <= 1;
+                    adder_in_a <= C;
+                    adder_in_b <= in_m;
                 end
             end
             WAIT_ADDER: begin 
-                adder_start <= 0;
-                if (adder_done)
-                    C <= adder_result;
+                C <= adder_result;
             end
             DONE: begin 
             end
