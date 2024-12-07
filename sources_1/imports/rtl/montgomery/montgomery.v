@@ -20,6 +20,8 @@ module montgomery(
   // Dear Students: This always block was added to ensure the tool doesn't
   // trim away the montgomery module. Feel free to remove this block.
 
+parameter n = 1024;
+
 // Intermediate register   
 reg [1027:0] A, C; 
 reg [1027:0] twoB, threeB, twoM, threeM; 
@@ -32,9 +34,17 @@ reg [1026:0] adder_in_a, adder_in_b;
 wire [1027:0] adder_result;
 wire adder_done;
 
-// reg [1:0] multi_step; 
+// // Intermediate registers to cut down critical path
+// reg [1026:0] adder_in_a_buffer, adder_in_b_buffer;
 
-parameter n = 1024;
+// always @(posedge clk) begin
+//     if (~resetn)
+//         adder_in_a_buffer <= 0;
+//         adder_in_b_buffer <= 0;
+//     else
+//         adder_in_a_buffer <= adder_in_a;
+//         adder_in_b_buffer <= adder_in_b;
+// end
 
 
 // Adder module instance
@@ -50,34 +60,30 @@ mpadder mpadder_instance(
 );
 
 
-// State Definition
-localparam IDLE                = 5'd0;
-localparam INITIALIZE          = 5'd1;
-localparam INIT_MULT_B0        = 5'd2;
-localparam WAIT_MULT_B0        = 5'd3;
-localparam INIT_MULT_B1        = 5'd4;
-localparam WAIT_MULT_B1        = 5'd5;
-localparam INIT_MULT_M0        = 5'd6;
-localparam WAIT_MULT_M0        = 5'd7;
-localparam INIT_MULT_M1        = 5'd8;
-localparam WAIT_MULT_M1        = 5'd9;
-localparam ACCUMULATE          = 5'd10;
-localparam INIT_ADDER          = 5'd11;
-localparam WAIT_MULTIPLIER     = 5'd12;
-localparam CONDITIONAL_UPDATE  = 5'd13;
-localparam INIT_CONST_MULTIPLIER = 5'd14;
-localparam WAIT_CONST_MULTIPLIER = 5'd15;
-localparam DIVIDE_BY_4         = 5'd16;
-localparam CHECK_LOOP          = 5'd17;
-localparam COMPARE             = 5'd18;
-localparam NORMALIZE           = 5'd19;
-localparam WAIT_ADDER          = 5'd20;
-localparam DONE                = 5'd21;
+// State Definition (Gray Code)
+localparam IDLE                  = 5'b00000; // 0
+localparam INITIALIZE            = 5'b00001; // 1
+localparam INIT_MULT_B0          = 5'b00011; // 3
+localparam WAIT_MULT_B0          = 5'b00010; // 2
+localparam INIT_MULT_M0          = 5'b00110; // 6
+localparam WAIT_MULT_M0          = 5'b00111; // 7
+localparam WAIT_MULT_M1          = 5'b00101; // 5
+localparam ACCUMULATE            = 5'b00100; // 4
+localparam WAIT_MULTIPLIER       = 5'b01100; // 12
+localparam CONDITIONAL_UPDATE    = 5'b01101; // 13
+localparam WAIT_CONST_MULTIPLIER = 5'b01111; // 15
+localparam DIVIDE_BY_4           = 5'b01110; // 14
+localparam COMPARE               = 5'b01010; // 10
+localparam NORMALIZE             = 5'b01011; // 11
+localparam WAIT_ADDER            = 5'b01001; // 9
+localparam DONE                  = 5'b01000; // 8
+
+
 
 
 
 // State Register
-reg [4:0] current_state, next_state;
+reg [5:0] current_state, next_state;
 
 always @(posedge clk)
 begin
@@ -195,7 +201,11 @@ always @(posedge clk) begin
                 
                 A_index_bits <= A[1:0];
             end
-            WAIT_MULT_M1: threeM <= adder_result;
+            WAIT_MULT_M1: begin 
+                threeM <= adder_result; 
+                adder_in_a <= 0;
+                adder_in_b <= 0;
+            end
             ACCUMULATE: begin               
                 subtract <= 0;
                 adder_in_a <= C;
@@ -207,10 +217,14 @@ always @(posedge clk) begin
                     else if (A_index_bits == 3) adder_in_b <= threeB;
                 end   
             end
-            WAIT_MULTIPLIER:  C <= adder_result;
+            WAIT_MULTIPLIER:  begin 
+                C <= adder_result; 
+                adder_in_a <= 0;
+                adder_in_b <= 0;
+            end
             CONDITIONAL_UPDATE: begin
                 subtract <= 0;
-                adder_in_a <= C[1026:0];
+                adder_in_a <= C;
                 if ((C[1:0] == 2'b01 && in_m[1:0] == 2'b01) || (C[1:0] == 2'b11 && in_m[1:0] == 2'b11)) begin
                     adder_in_b <= threeM;
                 end
@@ -225,6 +239,8 @@ always @(posedge clk) begin
             end
             WAIT_CONST_MULTIPLIER: begin 
                 C <= adder_result;
+                adder_in_a <= 0;
+                adder_in_b <= 0;
             end
             DIVIDE_BY_4: begin
                 C <= C >> 2;    
@@ -245,6 +261,8 @@ always @(posedge clk) begin
             end
             WAIT_ADDER: begin 
                 C <= adder_result;
+                adder_in_a <= 0;
+                adder_in_b <= 0;
             end
             DONE: begin 
             end
